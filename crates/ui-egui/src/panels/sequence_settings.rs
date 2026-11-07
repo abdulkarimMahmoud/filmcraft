@@ -259,7 +259,7 @@ type Elems = Vec<(String, egui::Rect, String)>;
 fn row<R>(ui: &mut egui::Ui, label_w: f32, label: &str, enabled: bool, add: impl FnOnce(&mut egui::Ui) -> R) -> R {
     ui.horizontal(|ui| {
         let h = ui.spacing().interact_size.y;
-        ui.allocate_ui_with_layout(egui::vec2(label_w, h), egui::Layout::right_to_left(egui::Align::Center), |ui| {
+        ui.allocate_ui_with_layout(egui::vec2(label_w, h), crate::direction::from_end(egui::Align::Center), |ui| {
             ui.add_enabled(enabled, egui::Label::new(t(label)));
         });
         add(ui)
@@ -514,7 +514,7 @@ pub fn show(app: &mut FilmcraftApp, ctx: &egui::Context) -> bool {
                 _ => general(ui, &mut d, &cur, audio_samples, &mut elems),
             });
             ui.add_space(10.0);
-            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+            ui.with_layout(crate::direction::from_end(egui::Align::Center), |ui| {
                 let o = ui.add(egui::Button::new(egui::RichText::new(tl!("OK")).color(egui::Color32::WHITE)).fill(accent));
                 elems.push(("sequenceSettings.ok".into(), o.rect, "OK".into()));
                 if o.clicked() {

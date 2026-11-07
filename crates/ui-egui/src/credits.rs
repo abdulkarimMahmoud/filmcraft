@@ -366,7 +366,7 @@ fn fitted_table<'a>(ui: &'a mut egui::Ui, id: &str, natural: &[f32], grow: &[f32
 
 /// Add a cell's widget right-aligned (counts, dates) or left-aligned (names), vertically centred.
 fn aligned<R>(ui: &mut egui::Ui, right: bool, add: impl FnOnce(&mut egui::Ui) -> R) -> R {
-    let layout = if right { egui::Layout::right_to_left(egui::Align::Center) } else { egui::Layout::left_to_right(egui::Align::Center) };
+    let layout = if right { crate::direction::from_end(egui::Align::Center) } else { crate::direction::row(egui::Align::Center) };
     ui.with_layout(layout, add).inner
 }
 

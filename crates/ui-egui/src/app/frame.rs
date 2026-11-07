@@ -117,7 +117,7 @@ impl FilmcraftApp {
         // A label, not painted text, so a path or an error can be selected and copied (#2295);
         // too long a message ends in "…" before the job's progress and shows in full on hover.
         let text = egui::Rect::from_min_max(egui::pos2(sb.min.x + 10.0, sb.min.y), egui::pos2((right - 10.0).max(sb.min.x + 10.0), sb.max.y));
-        let mut row = ui.new_child(egui::UiBuilder::new().max_rect(text).id_salt("status-text").layout(egui::Layout::left_to_right(egui::Align::Center)));
+        let mut row = ui.new_child(egui::UiBuilder::new().max_rect(text).id_salt("status-text").layout(crate::direction::row(egui::Align::Center)));
         let shown = row.add(egui::Label::new(egui::RichText::new(&hint).font(Tokens::ui(11.0)).color(t.text_dim)).selectable(true).truncate());
         self.auto.add("status.text", shown.rect, &hint);
     }

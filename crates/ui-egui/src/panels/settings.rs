@@ -12,7 +12,7 @@
 //! `settings.page` (the category's page), `settings.help`, `settings.reset`, `settings.cancel`,
 //! `settings.ok`.
 
-use egui::{Align, Align2, Color32, CornerRadius, Frame, Layout, Margin, Rect, RichText, Sense, Stroke, Ui, vec2};
+use egui::{Align, Align2, Color32, CornerRadius, Frame, Margin, Rect, RichText, Sense, Stroke, Ui, vec2};
 use filmcraft_engine::settings::{self, DeviceList, Field, Kind, Row};
 use filmcraft_project::Label;
 use serde::{Deserialize, Serialize};
@@ -274,7 +274,7 @@ fn theme_card(app: &mut FilmcraftApp, ui: &mut Ui, d: &mut SettingsDraft, key: &
                         if r.clicked() {
                             put(&mut d.values, key, json!(v));
                         }
-                        ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
+                        ui.with_layout(crate::direction::from_end(Align::Center), |ui| {
                             let mut favorites: Vec<String> = serde_json::from_value(get(&d.values, "appearance.favoriteThemes").clone()).unwrap_or_default();
                             let favorite = favorites.iter().any(|id| id == v);
                             let action = if favorite { tl!("Remove from favorites") } else { tl!("Add to favorites") };
@@ -405,7 +405,7 @@ fn group(ui: &mut Ui, t: &Tokens, title: &str, add: impl FnOnce(&mut Ui)) {
 /// Spanish…) wraps inside it: unwrapped, it ran left out of the page, and the next rows followed.
 fn field_label(ui: &mut Ui, text: &str) {
     let w = LABEL_W.min(ui.available_width() * 0.45);
-    ui.allocate_ui_with_layout(vec2(w, 24.0), Layout::right_to_left(Align::Center), |ui| {
+    ui.allocate_ui_with_layout(vec2(w, 24.0), crate::direction::from_end(Align::Center), |ui| {
         if !text.is_empty() {
             ui.add(egui::Label::new(RichText::new(format!("{}:", crate::i18n::t(text))).size(12.5)).wrap());
         }
@@ -925,7 +925,7 @@ pub fn show(app: &mut FilmcraftApp, ctx: &egui::Context) -> bool {
                 d.values[d.page.as_str()] = defaults[d.page.as_str()].clone();
                 put(&mut d.values, "general.recentProjects", keep);
             }
-            ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
+            ui.with_layout(crate::direction::from_end(Align::Center), |ui| {
                 ui.add_space(20.0);
                 if button(app, ui, "settings.ok", tl!("OK"), true) {
                     apply = true;

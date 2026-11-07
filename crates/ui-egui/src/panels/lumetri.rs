@@ -55,12 +55,12 @@ pub fn show(app: &mut FilmcraftApp, ui: &mut egui::Ui, rect: Rect) {
     // header: clip context + fx toggle
     // the fx toggle is laid out first so a long clip name is truncated instead of widening the panel
     bui.horizontal(|ui| {
-        ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+        ui.with_layout(crate::direction::from_end(egui::Align::Center), |ui| {
             let fx = ui.add(egui::Button::new(egui::RichText::new("fx").italics().color(if e.enabled { t.text } else { t.text_faint })).frame(false));
             if fx.clicked() {
                 let _ = app.session.execute("effects.toggleEnabled", json!({"clip": clip.0, "index": idx}));
             }
-            ui.with_layout(egui::Layout::left_to_right(egui::Align::Center), |ui| {
+            ui.with_layout(crate::direction::row(egui::Align::Center), |ui| {
                 ui.add(egui::Label::new(egui::RichText::new(tlf!("Master · {name}", name = it.name)).color(t.text_dim)).truncate());
             });
         });
@@ -476,7 +476,7 @@ fn slider(
     let mut vui = ui.new_child(
         egui::UiBuilder::new()
             .max_rect(Rect::from_min_max(pos2(row.max.x - 52.0, row.min.y + 3.0), pos2(row.max.x, row.max.y - 3.0)))
-            .layout(egui::Layout::right_to_left(egui::Align::Center)),
+            .layout(crate::direction::from_end(egui::Align::Center)),
     );
     let (_, nv) = crate::widgets::hot_number(
         &mut vui,

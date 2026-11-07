@@ -106,7 +106,7 @@ pub(super) fn preset_manager(app: &mut FilmcraftApp, ctx: &egui::Context) {
                 if r.clicked() {
                     cmd = Some(("export.presets.delete", json!({"name": m.selected})));
                 }
-                ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                ui.with_layout(crate::direction::from_end(egui::Align::Center), |ui| {
                     let r = ui.add_enabled(sel.is_some(), egui::Button::new(tl!("OK")));
                     reg.add("presetManager.ok", r.rect, "OK");
                     if r.clicked() {

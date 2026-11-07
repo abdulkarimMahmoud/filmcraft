@@ -232,7 +232,7 @@ pub fn show(app: &mut FilmcraftApp, ui: &mut egui::Ui, rect: Rect) {
             let mode = if editing.is_some() { "Editing the selected narration" } else { "New narration" };
             ui.label(egui::RichText::new(mode).color(t.text_dim).size(11.5));
             if editing.is_some() {
-                ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                ui.with_layout(crate::direction::from_end(egui::Align::Center), |ui| {
                     let b = ui.small_button("New");
                     auto.add("tts.new", visible(ui, b.rect), "New narration");
                     if b.clicked() {
@@ -357,7 +357,7 @@ pub fn show(app: &mut FilmcraftApp, ui: &mut egui::Ui, rect: Rect) {
         ui.add_space(12.0);
         ui.horizontal(|ui| {
             ui.label(egui::RichText::new("Text").color(t.text).size(12.5).strong());
-            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+            ui.with_layout(crate::direction::from_end(egui::Align::Center), |ui| {
                 let (ir, i) = ui.allocate_exact_size(vec2(14.0, 14.0), Sense::hover());
                 icons::paint(ui.painter(), ir, Icon::Info, t.text_faint);
                 i.on_hover_text("Add pause inserts [pause 1s]. Change the number for a longer or shorter pause, e.g. [pause 500ms] or [pause 2s].");

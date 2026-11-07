@@ -105,6 +105,9 @@ impl FilmcraftApp {
             }
             i18n::set_current(self.ui.language);
             ctx.set_language(Some(self.ui.language.bcp47().to_owned()));
+            // Arabic mirrors the interface right to left (egui's own widgets; see `direction`)
+            let rtl = self.ui.language.is_rtl();
+            ctx.global_style_mut(|s| s.right_to_left = rtl);
         }
         self.frames.set_cache_budget(p.memory.frame_cache_mb as usize * (1 << 20));
         self.ui.play_after_render = p.timeline.play_after_rendering;

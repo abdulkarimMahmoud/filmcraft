@@ -163,7 +163,7 @@ pub fn show(app: &mut FilmcraftApp, ctx: &egui::Context) {
             ui.horizontal(|ui| {
                 let r = ui.checkbox(&mut d.import, "Import into project");
                 elems.push(("exportFrame.import".into(), r.rect, d.import.to_string()));
-                ui.allocate_ui_with_layout(egui::vec2(ui.available_width(), 26.0), egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                ui.allocate_ui_with_layout(egui::vec2(ui.available_width(), 26.0), crate::direction::from_end(egui::Align::Center), |ui| {
                     let r = ui.add_enabled(FileDialog::Folder { at: Some(String::new()) }.available(&app.hooks), egui::Button::new("Browse…"));
                     browse = r.clicked();
                     elems.push(("exportFrame.browse".into(), r.rect, "Browse".into()));
@@ -187,7 +187,7 @@ pub fn show(app: &mut FilmcraftApp, ctx: &egui::Context) {
                     elems.push(("exportFrame.keep".into(), r.rect, "Keep existing file".into()));
                 });
             } else {
-                ui.allocate_ui_with_layout(egui::vec2(ui.available_width(), 26.0), egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                ui.allocate_ui_with_layout(egui::vec2(ui.available_width(), 26.0), crate::direction::from_end(egui::Align::Center), |ui| {
                     let r = ui.button("Cancel");
                     close |= r.clicked();
                     elems.push(("exportFrame.cancel".into(), r.rect, "Cancel".into()));

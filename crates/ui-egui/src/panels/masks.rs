@@ -116,7 +116,7 @@ pub(crate) fn effect_rows(
         app.auto.add(&base, r, &m.name);
         // mode
         let mr = Rect::from_min_size(pos2(r.max.x - 118.0, r.min.y + 2.0), vec2(96.0, ROW_H - 4.0));
-        let mut mui = ui.new_child(egui::UiBuilder::new().max_rect(mr).layout(egui::Layout::left_to_right(egui::Align::Center)));
+        let mut mui = ui.new_child(egui::UiBuilder::new().max_rect(mr).layout(crate::direction::row(egui::Align::Center)));
         let mut mode = m.mode;
         crate::panels::effect_controls::fit_to_row(&mut mui);
         let combo =
@@ -166,7 +166,7 @@ pub(crate) fn effect_rows(
         crate::panels::effect_controls::row_line(ui, r, lane, &t);
         ui.painter().text(pos2(r.min.x + 40.0, r.center().y), Align2::LEFT_CENTER, tl!("Inverted"), Tokens::ui(12.0), t.text);
         let cr = Rect::from_min_size(pos2(r.min.x + (r.width() * 0.5).max(150.0), r.min.y + 2.0), vec2(20.0, ROW_H - 4.0));
-        let mut cui = ui.new_child(egui::UiBuilder::new().max_rect(cr).layout(egui::Layout::left_to_right(egui::Align::Center)));
+        let mut cui = ui.new_child(egui::UiBuilder::new().max_rect(cr).layout(crate::direction::row(egui::Align::Center)));
         crate::panels::effect_controls::fit_to_row(&mut cui);
         let mut inv = m.inverted;
         if crate::widgets::accessible_name(cui.checkbox(&mut inv, ""), "Invert").changed() {

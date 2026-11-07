@@ -107,7 +107,7 @@ pub fn show_failed(app: &mut crate::FilmcraftApp, ctx: &egui::Context) {
                 }
             });
             ui.add_space(6.0);
-            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+            ui.with_layout(crate::direction::from_end(egui::Align::Center), |ui| {
                 let r = ui.button(tl!("Close"));
                 elems.push(("failedLink.close", r.rect, "Close".into()));
                 close |= r.clicked();

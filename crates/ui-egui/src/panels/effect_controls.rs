@@ -666,7 +666,7 @@ pub(crate) fn param_row(
     let mut vui = ui.new_child(
         egui::UiBuilder::new()
             .max_rect(Rect::from_min_max(pos2(vx, r.min.y + 1.0), pos2(r.max.x - 26.0, r.max.y - 1.0)))
-            .layout(egui::Layout::left_to_right(egui::Align::Center)),
+            .layout(crate::direction::row(egui::Align::Center)),
     );
     let id = egui::Id::unique(("pv", clip.0, idx, pkey));
     let set = param_value_widget(app, &mut vui, e, pd, &value, clip, idx, mask, pkey, id, t, actions);
@@ -1111,7 +1111,7 @@ pub fn properties_panel(app: &mut FilmcraftApp, ui: &mut egui::Ui, rect: Rect) {
                     let mut vui = bui.new_child(
                         egui::UiBuilder::new()
                             .max_rect(Rect::from_min_max(pos2(r.min.x + 150.0, r.min.y + 4.0), pos2(r.max.x - PROPS_VALUE_R, r.max.y - 4.0)))
-                            .layout(egui::Layout::left_to_right(egui::Align::Center)),
+                            .layout(crate::direction::row(egui::Align::Center)),
                     );
                     match val("motion", p) {
                         Some(ParamValue::Vec2(v)) => {
@@ -1157,7 +1157,7 @@ pub fn properties_panel(app: &mut FilmcraftApp, ui: &mut egui::Ui, rect: Rect) {
                 let mut vui = bui.new_child(
                     egui::UiBuilder::new()
                         .max_rect(Rect::from_min_max(pos2(r.min.x + 150.0, r.min.y + 4.0), pos2(r.max.x - PROPS_VALUE_R, r.max.y - 4.0)))
-                        .layout(egui::Layout::left_to_right(egui::Align::Center)),
+                        .layout(crate::direction::row(egui::Align::Center)),
                 );
                 if let Some(ParamValue::Float(v)) = val("opacity", "opacity") {
                     let (_, nv) = crate::widgets::hot_number(
@@ -1180,7 +1180,7 @@ pub fn properties_panel(app: &mut FilmcraftApp, ui: &mut egui::Ui, rect: Rect) {
                     let mut vui = bui.new_child(
                         egui::UiBuilder::new()
                             .max_rect(Rect::from_min_max(pos2(r.min.x + 150.0, r.min.y + 4.0), pos2(r.max.x - PROPS_VALUE_R, r.max.y - 4.0)))
-                            .layout(egui::Layout::left_to_right(egui::Align::Center)),
+                            .layout(crate::direction::row(egui::Align::Center)),
                     );
                     let v = val("crop", p).and_then(|v| v.as_f64()).unwrap_or(0.0);
                     let (_, nv) = crate::widgets::hot_number(
@@ -1210,7 +1210,7 @@ pub fn properties_panel(app: &mut FilmcraftApp, ui: &mut egui::Ui, rect: Rect) {
             let mut vui = bui.new_child(
                 egui::UiBuilder::new()
                     .max_rect(Rect::from_min_max(pos2(r.min.x + 150.0, r.min.y + 4.0), pos2(r.max.x - PROPS_VALUE_R, r.max.y - 4.0)))
-                    .layout(egui::Layout::left_to_right(egui::Align::Center)),
+                    .layout(crate::direction::row(egui::Align::Center)),
             );
             let v = val("volume", "level").and_then(|v| v.as_f64()).unwrap_or(0.0);
             let (_, nv) = crate::widgets::hot_number(
@@ -1228,7 +1228,7 @@ pub fn properties_panel(app: &mut FilmcraftApp, ui: &mut egui::Ui, rect: Rect) {
             let mut vui = bui.new_child(
                 egui::UiBuilder::new()
                     .max_rect(Rect::from_min_max(pos2(r.min.x + 150.0, r.min.y + 4.0), pos2(r.max.x - PROPS_VALUE_R, r.max.y - 4.0)))
-                    .layout(egui::Layout::left_to_right(egui::Align::Center)),
+                    .layout(crate::direction::row(egui::Align::Center)),
             );
             let v = val("panner", "balance").and_then(|v| v.as_f64()).unwrap_or(0.0);
             let (_, nv) = crate::widgets::hot_number(

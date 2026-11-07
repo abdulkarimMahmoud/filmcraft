@@ -78,7 +78,7 @@ pub fn show(app: &mut FilmcraftApp, ctx: &egui::Context) -> bool {
             ui.add_space(8.0);
             ui.label(RichText::new(tl!("Change the sequence to match the clip's settings?")).size(13.5).color(t.text));
             ui.add_space(18.0);
-            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+            ui.with_layout(crate::direction::from_end(egui::Align::Center), |ui| {
                 if super::file_dialogs::button(app, ui, "clipMismatch.change", tl!("Change Sequence Settings"), true) {
                     answer = Some(true);
                 }

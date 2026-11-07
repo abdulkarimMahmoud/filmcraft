@@ -283,6 +283,13 @@ impl Language {
         self.catalog().and_then(|c| c.plain(text)).is_some()
     }
 
+    /// Whether the language reads right to left (Arabic today; Hebrew when it gets a catalog).
+    /// Rows laid out by hand follow it through `direction::row` / `direction::from_end`, and
+    /// `Style::right_to_left` mirrors egui's own widgets.
+    pub fn is_rtl(self) -> bool {
+        matches!(self, Self::Ar)
+    }
+
     /// Uppercase `text`, using Turkish-aware rules (`i` → `İ`, `ı` → `I`) when the language is
     /// Turkish.
     pub fn to_uppercase(self, text: &str) -> String {

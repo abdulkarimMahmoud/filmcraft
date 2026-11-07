@@ -87,7 +87,7 @@ pub fn show_recovery(app: &mut FilmcraftApp, ctx: &egui::Context) -> bool {
                     }
                     choice = 0;
                 }
-                ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                ui.with_layout(crate::direction::from_end(egui::Align::Center), |ui| {
                     if button(app, ui, "recovery.recover", tl!("Recover"), true) {
                         match app.session.execute("file.recover", json!({ "id": id })) {
                             Ok(_) => open = false,
@@ -118,7 +118,7 @@ pub fn show_revert(app: &mut FilmcraftApp, ctx: &egui::Context) -> bool {
             ui.add_space(6.0);
             ui.label(RichText::new(tlf!("Are you sure you want to discard your changes to '{file}'?", file)).size(13.5).color(t.text));
             ui.add_space(18.0);
-            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+            ui.with_layout(crate::direction::from_end(egui::Align::Center), |ui| {
                 if button(app, ui, "revert.yes", tl!("Yes"), true) {
                     if let Err(e) = app.session.execute("file.revert", json!({})) {
                         app.ui.status = e.to_string();
@@ -153,7 +153,7 @@ pub fn show_overwrite(app: &mut FilmcraftApp, ctx: &egui::Context) {
             ui.add_space(6.0);
             ui.label(RichText::new(tlf!("“{file}” already exists in “{folder}”. Do you want to replace it?", file, folder)).size(13.5).color(t.text));
             ui.add_space(18.0);
-            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+            ui.with_layout(crate::direction::from_end(egui::Align::Center), |ui| {
                 if button(app, ui, "overwrite.replace", tl!("Replace"), true) {
                     answer = Some(true);
                 }

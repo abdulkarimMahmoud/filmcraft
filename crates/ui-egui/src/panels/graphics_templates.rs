@@ -330,7 +330,7 @@ fn row_label(ui: &mut egui::Ui, label: &str, t: &Tokens) -> egui::Ui {
     ui.new_child(
         egui::UiBuilder::new()
             .max_rect(Rect::from_min_max(pos2(r.min.x + 130.0, r.min.y + 3.0), pos2(r.max.x - 6.0, r.max.y - 3.0)))
-            .layout(egui::Layout::left_to_right(egui::Align::Center)),
+            .layout(crate::direction::row(egui::Align::Center)),
     )
 }
 

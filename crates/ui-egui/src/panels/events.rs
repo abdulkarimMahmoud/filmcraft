@@ -83,7 +83,7 @@ pub fn events(app: &mut FilmcraftApp, ui: &mut egui::Ui, rect: Rect) {
             glyph(ui.painter(), gr.center(), l);
             ui.label(RichText::new(log.count(l).to_string()).color(t.text_dim));
         }
-        ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+        ui.with_layout(crate::direction::from_end(egui::Align::Center), |ui| {
             let r = ui.button(tl!("Clear All"));
             elems.push(("events.clearAll".into(), r.rect, "Clear All".into()));
             clear = r.clicked();

@@ -800,7 +800,7 @@ fn mix_volume(app: &mut FilmcraftApp, ui: &mut egui::Ui, seq: &Sequence, r: Rect
     use filmcraft_project::mixer::{FADER_MAX_DB, FADER_MIN_DB, LANE_VOLUME, MASTER_STRIP};
     let now = app.session.playhead();
     let db = app.session.previews.live.get(MASTER_STRIP, LANE_VOLUME).map(|o| o.value).unwrap_or_else(|| seq.master_strip().lane_value(LANE_VOLUME, now));
-    let mut vui = ui.new_child(egui::UiBuilder::new().max_rect(r).layout(egui::Layout::right_to_left(egui::Align::Center)).id_salt("timeline-mix"));
+    let mut vui = ui.new_child(egui::UiBuilder::new().max_rect(r).layout(crate::direction::from_end(egui::Align::Center)).id_salt("timeline-mix"));
     let (resp, nv) = crate::widgets::hot_number(
         &mut vui,
         tl!("Mix"),

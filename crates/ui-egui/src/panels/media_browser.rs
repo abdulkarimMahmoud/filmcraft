@@ -190,7 +190,7 @@ pub fn show(app: &mut FilmcraftApp, ui: &mut egui::Ui, rect: Rect) {
     // second row: Ingest (Project ▸ Ingest Settings) and Import as Image Sequence
     let row2 = Rect::from_min_size(pos2(bar.min.x, bar.max.y + 4.0), vec2(bar.width(), 20.0));
     let mut ingest = app.session.project.settings.ingest.enabled;
-    let mut c = ui.new_child(egui::UiBuilder::new().max_rect(row2).id_salt("mb-row2").layout(egui::Layout::left_to_right(egui::Align::Center)));
+    let mut c = ui.new_child(egui::UiBuilder::new().max_rect(row2).id_salt("mb-row2").layout(crate::direction::row(egui::Align::Center)));
     let r = c.checkbox(&mut ingest, tl!("Ingest"));
     app.auto.add("mediaBrowser.ingest", r.rect, "Ingest");
     if r.changed() {

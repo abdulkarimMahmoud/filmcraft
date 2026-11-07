@@ -228,7 +228,7 @@ fn add_tracks(app: &mut FilmcraftApp, ctx: &egui::Context) -> bool {
                 .fold(0.0, f32::max);
             let row_h = ui.spacing().interact_size.y;
             let label = |ui: &mut egui::Ui, text: &str| {
-                ui.allocate_ui_with_layout(egui::vec2(label_w, row_h), egui::Layout::right_to_left(egui::Align::Center), |ui| ui.label(text));
+                ui.allocate_ui_with_layout(egui::vec2(label_w, row_h), crate::direction::from_end(egui::Align::Center), |ui| ui.label(text));
             };
             let groups: [(&str, &str, &mut u32, &mut usize, &[String], Option<(&mut String, &[(&str, &str); 4])>); 3] = [
                 ("video", tl!("Add video tracks"), &mut d.video, &mut d.video_after, &vnames, None),
@@ -283,7 +283,7 @@ fn add_tracks(app: &mut FilmcraftApp, ctx: &egui::Context) -> bool {
                 });
             }
             ui.add_space(10.0);
-            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+            ui.with_layout(crate::direction::from_end(egui::Align::Center), |ui| {
                 let o = ui.add(egui::Button::new(egui::RichText::new(tl!("OK")).color(egui::Color32::WHITE)).fill(app.tokens.accent));
                 elems.push(("addTracks.ok".into(), o.rect, "OK".into()));
                 if o.clicked() {

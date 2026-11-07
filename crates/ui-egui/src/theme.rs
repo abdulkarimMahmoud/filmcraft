@@ -498,6 +498,9 @@ pub fn apply_visuals(ctx: &egui::Context, t: &Tokens) {
     v.widgets.open.weak_bg_fill = t.hover;
     ctx.set_visuals(v);
     ctx.global_style_mut(|s| {
+        // Arabic reads right to left: egui's own widgets (menus, scroll bars, combo boxes,
+        // checkboxes, popups, resize grips) mirror. Hand-written rows go through `direction`.
+        s.right_to_left = crate::direction::is_rtl();
         s.spacing.item_spacing = egui::vec2(6.0, 4.0);
         s.spacing.button_padding = egui::vec2(8.0, 3.0);
         s.spacing.interact_size.y = 24.0;

@@ -90,7 +90,7 @@ pub(super) fn queue_column(app: &mut FilmcraftApp, ui: &mut egui::Ui, rect: Rect
     let running = app.session.export_queue.running;
     let has_ready = items.iter().any(|i| i["status"] == "ready");
     let foot = Rect::from_min_max(pos2(rect.min.x + 8.0, rect.max.y - 34.0), pos2(rect.max.x - 8.0, rect.max.y - 6.0));
-    let mut f = ui.new_child(egui::UiBuilder::new().max_rect(foot).layout(egui::Layout::left_to_right(egui::Align::Center)));
+    let mut f = ui.new_child(egui::UiBuilder::new().max_rect(foot).layout(crate::direction::row(egui::Align::Center)));
     let r = f.add_enabled(!running && has_ready, egui::Button::new(tl!("Start Queue")));
     reg.add("export.queue.start", r.rect, "Start Queue");
     if r.clicked() {

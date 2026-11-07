@@ -319,7 +319,7 @@ fn field_row_height(ui: &mut egui::Ui, label: &str, min_height: f32, contents: i
     // Match a TextEdit's first line and its two-pixel top/bottom margin, including Notes.
     let label_height = (ui.text_style_height(&egui::TextStyle::Body) + ui.spacing().extra_text_line_spacing + 4.0).max(min_height);
     ui.horizontal_top(|ui| {
-        ui.allocate_ui_with_layout(vec2(76.0, label_height), egui::Layout::right_to_left(egui::Align::Center), |ui| {
+        ui.allocate_ui_with_layout(vec2(76.0, label_height), crate::direction::from_end(egui::Align::Center), |ui| {
             ui.label(label);
         });
         ui.vertical(contents);
