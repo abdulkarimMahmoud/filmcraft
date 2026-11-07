@@ -17,6 +17,10 @@
 //! a font already installed on the system ([`system_japanese_font`]); with neither, switching to
 //! Japanese is refused with a message.
 //!
+//! Arabic is a right-to-left language: labels lay out in reading order through the egui fork's
+//! bidi pass, and its glyphs come from the Arabic faces `rtl::install` adds (craft-fonts, else an
+//! installed face). Switching to Arabic is refused when neither supplies one ([`arabic_font_available`]).
+//!
 //! Simplified Chinese uses the Chinese fallback `theme::install` always adds (craft-fonts Hans/Hant
 //! faces, otherwise one installed system face, see `cjk.rs`); without one, switching to Chinese is
 //! refused the same way ([`chinese_font_available`]).
@@ -58,6 +62,9 @@ pub enum Language {
     /// Swedish.
     Sv,
     Tr,
+    /// Arabic; right-to-left. Its glyphs come from the Arabic fallback faces (craft-fonts, or an
+    /// installed face, see `rtl.rs`); switching is refused when neither supplies one.
+    Ar,
 }
 
 static JAPANESE: OnceLock<Catalog> = OnceLock::new();
@@ -76,9 +83,10 @@ static BOSNIAN: OnceLock<Catalog> = OnceLock::new();
 static CZECH: OnceLock<Catalog> = OnceLock::new();
 static SWEDISH: OnceLock<Catalog> = OnceLock::new();
 static TURKISH: OnceLock<Catalog> = OnceLock::new();
+static ARABIC: OnceLock<Catalog> = OnceLock::new();
 
 impl Language {
-    pub const ALL: [Self; 17] = [
+    pub const ALL: [Self; 18] = [
         Self::En,
         Self::Ja,
         Self::Es,
@@ -96,6 +104,7 @@ impl Language {
         Self::Sv,
         Self::Tr,
         Self::Bs,
+        Self::Ar,
     ];
 
     /// BCP 47 tag for AccessKit and the web IME's hidden input. Keep the persisted spelling
@@ -119,6 +128,7 @@ impl Language {
             Self::Pl => "pl",
             Self::Sv => "sv",
             Self::Tr => "tr",
+            Self::Ar => "ar",
         }
     }
 
@@ -141,6 +151,7 @@ impl Language {
             Self::Pl => "Polski",
             Self::Sv => "Svenska",
             Self::Tr => "Türkçe",
+            Self::Ar => "العربية",
         }
     }
 
@@ -163,6 +174,7 @@ impl Language {
             "pl" => Some(Self::Pl),
             "sv" => Some(Self::Sv),
             "tr" => Some(Self::Tr),
+            "ar" => Some(Self::Ar),
             _ => None,
         }
     }
@@ -173,11 +185,11 @@ impl Language {
     /// any German (`de-AT`, `de_CH.UTF-8`…) gets the German one and any French (`fr-CA`, `fr_BE.UTF-8`…)
     /// the French one; any Indonesian (`id-ID`, `id_ID.UTF-8`, and the legacy `in-ID` that older Java
     /// and Android runtimes report) the Indonesian one; any Italian (`it-IT`, `it-CH`, `it_IT.UTF-8`…)
-    /// the Italian one; any Bosnian (`bs-BA`, `bs_BA.UTF-8`, `bs-Latn-BA`…) the Bosnian one; any Swedish (`sv-SE`, `sv-FI`, `sv_SE.UTF-8`…) the Swedish one; any Turkish (`tr`, `tr-TR`, `tr_TR.UTF-8`…) the Turkish one. Chinese gets the Simplified catalog
+    /// the Italian one; any Bosnian (`bs-BA`, `bs_BA.UTF-8`, `bs-Latn-BA`…) the Bosnian one; any Swedish (`sv-SE`, `sv-FI`, `sv_SE.UTF-8`…) the Swedish one; any Turkish (`tr`, `tr-TR`, `tr_TR.UTF-8`…) the Turkish one; any Arabic (`ar`, `ar-SA`, `ar_EG.UTF-8`, `ar-EG`…) the Arabic one. Chinese gets the Simplified catalog
     /// only for Simplified locales (`zh`, `zh-CN`, `zh-SG`, `zh-Hans…`); Traditional ones (`zh-TW`,
     /// `zh-HK`, `zh-MO`, `zh-Hant…`) are skipped.
     pub fn from_locales(tags: &[String]) -> Self {
-        const PRIMARY: [(&str, Language); 17] = [
+        const PRIMARY: [(&str, Language); 18] = [
             ("en", Language::En),
             ("ja", Language::Ja),
             ("es", Language::Es),
@@ -195,6 +207,7 @@ impl Language {
             ("pl", Language::Pl),
             ("sv", Language::Sv),
             ("tr", Language::Tr),
+            ("ar", Language::Ar),
         ];
         tags.iter()
             .find_map(|tag| {
@@ -232,6 +245,7 @@ impl Language {
             Self::Pl => "pl",
             Self::Sv => "sv",
             Self::Tr => "tr",
+            Self::Ar => "ar",
         }
     }
 
@@ -255,6 +269,7 @@ impl Language {
             Self::Pl => Some(POLISH.get_or_init(|| Catalog::parse(include_str!("i18n/pl.tsv")))),
             Self::Sv => Some(SWEDISH.get_or_init(|| Catalog::parse(include_str!("i18n/sv.tsv")))),
             Self::Tr => Some(TURKISH.get_or_init(|| Catalog::parse(include_str!("i18n/tr.tsv")))),
+            Self::Ar => Some(ARABIC.get_or_init(|| Catalog::parse(include_str!("i18n/ar.tsv")))),
         }
     }
 
@@ -479,6 +494,12 @@ pub fn install_japanese_font(ctx: &egui::Context) -> bool {
 /// face, see `cjk.rs`), so nothing needs installing here. False on systems without either.
 pub fn chinese_font_available() -> bool {
     crate::cjk::available()
+}
+
+/// Whether the interface can show Arabic: the Arabic fallback faces `rtl::install` adds
+/// (craft-fonts, otherwise an installed face such as Segoe UI or Geeza Pro) supply its glyphs.
+pub fn arabic_font_available() -> bool {
+    crate::rtl::arabic_available()
 }
 
 /// Whether the interface can show Korean: `theme::install` adds an installed system Hangul face

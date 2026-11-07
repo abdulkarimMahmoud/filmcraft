@@ -117,6 +117,12 @@ pub(crate) fn install(fonts: &mut FontDefinitions) {
     }
 }
 
+/// Whether the interface has an Arabic face: the craft-fonts ones, else an installed face that
+/// [`system_fonts`] chose for the script.
+pub(crate) fn arabic_available() -> bool {
+    craft_fonts().any(|f| f.scripts.contains(&"Arab")) || system_fonts().iter().any(|(name, _)| name.as_str() == "system-arab")
+}
+
 /// Whether `name` is an installed right-to-left face added by [`install`].
 #[cfg(test)]
 pub(crate) fn is_system_face(name: &str) -> bool {

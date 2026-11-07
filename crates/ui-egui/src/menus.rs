@@ -27,8 +27,8 @@ pub const UI_COMMANDS: &[UiCommand] = &[
     uic!("window.floatPanel", "Undock Panel", [], None),
     uic!("window.closePanel", "Close Panel", [], None),
     uic!("app.language.english", "English", ["Edit", "Language"], None),
-    // Alphabetical by the language's own name after English; Cyrillic, then CJK names follow
-    // the Latin ones. Settings ▸ General ▸ Interface Language lists them the same way.
+    // Alphabetical by the language's own name after English; the Arabic name follows the Latin
+    // ones, then Cyrillic, then CJK. Settings ▸ General ▸ Interface Language lists them the same way.
     uic!("app.language.indonesian", "Bahasa Indonesia", ["Edit", "Language"], None),
     uic!("app.language.bosnian", "Bosanski", ["Edit", "Language"], None),
     uic!("app.language.czech", "Čeština", ["Edit", "Language"], None),
@@ -40,6 +40,7 @@ pub const UI_COMMANDS: &[UiCommand] = &[
     uic!("app.language.portuguese", "Português (Brasil)", ["Edit", "Language"], None),
     uic!("app.language.swedish", "Svenska", ["Edit", "Language"], None),
     uic!("app.language.turkish", "Türkçe", ["Edit", "Language"], None),
+    uic!("app.language.arabic", "العربية", ["Edit", "Language"], None),
     uic!("app.language.russian", "Русский", ["Edit", "Language"], None),
     uic!("app.language.ukrainian", "Українська", ["Edit", "Language"], None),
     uic!("app.language.japanese", "日本語", ["Edit", "Language"], None),
@@ -248,6 +249,7 @@ pub fn invoke_command(app: &mut FilmcraftApp, ctx: &egui::Context, id: &str, mut
             | "app.language.polish"
             | "app.language.swedish"
             | "app.language.turkish"
+            | "app.language.arabic"
     ) {
         // Japanese needs the craft-fonts (built with CRAFT_FONTS_DIR) or a font installed on the system
         if id == "app.language.japanese" && !crate::i18n::install_japanese_font(ctx) {
@@ -256,6 +258,10 @@ pub fn invoke_command(app: &mut FilmcraftApp, ctx: &egui::Context, id: &str, mut
         // Chinese needs the Chinese fallback theme::install adds (craft-fonts or a system face)
         if id == "app.language.chinese" && !crate::i18n::chinese_font_available() {
             return Err("no Chinese font is installed on this system (for example Noto Sans CJK SC or Microsoft YaHei); the interface stays in English".into());
+        }
+        // Arabic needs an Arabic face: craft-fonts, or one installed (see rtl.rs)
+        if id == "app.language.arabic" && !crate::i18n::arabic_font_available() {
+            return Err("no Arabic font is installed on this system (for example Noto Sans Arabic); the interface stays in English".into());
         }
         // Korean needs an installed Hangul font (none is bundled; see cjk.rs)
         if id == "app.language.korean" && !crate::i18n::korean_font_available() {
@@ -278,6 +284,7 @@ pub fn invoke_command(app: &mut FilmcraftApp, ctx: &egui::Context, id: &str, mut
             "app.language.polish" => crate::i18n::Language::Pl,
             "app.language.swedish" => crate::i18n::Language::Sv,
             "app.language.turkish" => crate::i18n::Language::Tr,
+            "app.language.arabic" => crate::i18n::Language::Ar,
             _ => crate::i18n::Language::En,
         };
         // The preference is updated in memory before it is written, so a failed write (read-only

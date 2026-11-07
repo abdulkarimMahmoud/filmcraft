@@ -1,0 +1,179 @@
+# Arabic (ar) catalog. Columns, separated by a TAB:  context <TAB> source <TAB> translation
+#
+#   context  empty          a plain UI string; `source` is the English text in the code (`tl!("…")`,
+#                           a menu label, or a name the UI translates with `i18n::t`)
+#            anything else  a disambiguating context passed to `tr_ctx`
+#   escapes  \n  \t  \\  inside a column. `{name}` placeholders must appear in both columns;
+#            translators may reorder them. A trailing "…" (dialog commands) is kept.
+#   lines starting with # and blank lines are ignored.
+#
+# Clean-room: every entry was written from the plain meaning of the English text using ordinary
+# Arabic video-editing vocabulary (تسلسل، مسار، مقطع، المخطط الزمني، رأس التشغيل…). No proprietary
+# localisation resource, string table or product UI was consulted or copied; add entries the same
+# way. Product and technology names (FilmCraft, ArtCraft, Lumetri, ProRes, LUFS…) keep their
+# spelling. Western digits (0-9), the Arabic comma ، and a masculine-neutral style (مصدر) are used.
+#
+# Status: pilot — the core menus, panels, workspaces, settings and dialogs. Strings the catalog
+# lacks are shown in English, so coverage grows incrementally. Glossary and decisions:
+# filmcraft-ar/docs/03-قاموس-المصطلحات.md
+
+	About FilmCraft	حول FilmCraft
+	Add Chapter Marker…	إضافة علامة فصل…
+	Add Edit	إضافة قطع
+	Add Edit to All Tracks	إضافة قطع إلى كل المسارات
+	Add Frame Hold	إضافة تثبيت إطار
+	Add Guide…	إضافة دليل…
+	Add Marker	إضافة علامة
+	Add Range Marker	إضافة علامة نطاق
+	Add Tracks…	إضافة مسارات…
+	Adjustment Layer…	طبقة ضبط…
+	All Panels	كل اللوحات
+	Alpha	ألفا
+	Appearance	المظهر
+	ArtCraft Website	موقع ArtCraft
+	Assembly	التجميع
+	Attach Proxies…	إرفاق نسخ وسيطة…
+	Audio Channels…	قنوات الصوت…
+	Audio Clip Mixer	مازج مقاطع الصوت
+	Audio Gain…	كسب الصوت…
+	Audio Hardware…	أجهزة الصوت…
+	Audio In	دخول الصوت
+	Audio Meters	مقاييس الصوت
+	Audio Options	خيارات الصوت
+	Audio Out	خروج الصوت
+	Audio Track Mixer	مازج مسارات الصوت
+	Auto Save…	الحفظ التلقائي…
+	Bars and Tone…	أشرطة ونغمات…
+	Bin	سلة
+	Black Video…	فيديو أسود…
+	Captions	الترجمات النصية
+	Captions and Graphics	الترجمات النصية والرسومات
+	Captions…	الترجمات النصية…
+	Clear	مسح
+	Clear Guides	مسح الأدلة
+	Clear In	مسح الدخول
+	Clear In and Out	مسح الدخول والخروج
+	Clear Markers	مسح العلامات
+	Clear Out	مسح الخروج
+	Clear Selected Marker	مسح العلامة المحددة
+	Close	إغلاق
+	Close All Other Projects	إغلاق المشاريع الأخرى
+	Close All Projects	إغلاق كل المشاريع
+	Close Project	إغلاق المشروع
+	Color Matte…	خلفية لونية…
+	Copy	نسخ
+	Create Captions from Transcript…	إنشاء ترجمات من النص المكتوب…
+	Create Proxies…	إنشاء نسخ وسيطة…
+	Cut	قص
+	Delete Tracks…	حذف المسارات…
+	Deselect All	إلغاء تحديد الكل
+	Detach Proxies	فصل النسخ الوسيطة
+	Duplicate	تكرار
+	Edit	تحرير
+	Editing	المونتاج
+	Effect Controls	عناصر التحكم في التأثير
+	Effects	التأثيرات
+	Essential Graphics	الرسومات الأساسية
+	File	ملف
+	Group	تجميع
+	Help	تعليمات
+	History	السجل
+	Import…	استيراد…
+	Info	المعلومات
+	Language	اللغة
+	Link	ربط
+	Lumetri Color	ألوان Lumetri
+	Markers	علامات
+	Media Browser	مستعرض الوسائط
+	Media…	الوسائط…
+	Open Project…	فتح مشروع…
+	Paste	لصق
+	Preferences	التفضيلات
+	Project	المشروع
+	Project Settings	إعدادات المشروع
+	Redo	إعادة
+	Reference Monitor	شاشة مرجعية
+	Rename…	إعادة تسمية…
+	Save	حفظ
+	Save All	حفظ الكل
+	Save As…	حفظ باسم…
+	Save a Copy…	حفظ نسخة…
+	Scratch Disks…	أقراص العمل المؤقتة…
+	Search Bin	البحث في السلة
+	Select All	تحديد الكل
+	Sequence	تسلسل
+	Sequence From Clip	تسلسل من مقطع
+	Sequence Settings…	إعدادات التسلسل…
+	Source	المصدر
+	Speed/Duration…	السرعة/المدة…
+	Text	نص
+	Timeline	المخطط الزمني
+	Toggle Proxies	تبديل النسخ الوسيطة
+	Tools	الأدوات
+	Transcribe Sequence…	تحويل التسلسل إلى نص…
+	Transcribe…	التحويل إلى نص…
+	Transcript	النص المكتوب
+	Transparent Video…	فيديو شفاف…
+	Trim Edit	تحرير الاقتصاص
+	Trim…	اقتصاص…
+	Undo	تراجع
+	Ungroup	إلغاء التجميع
+	Universal Counting Leader…	مقدمة عد تنازلي…
+	Video In	دخول الفيديو
+	Video Options	خيارات الفيديو
+	Video Out	خروج الفيديو
+	View	عرض
+	Window	نافذة
+	Workspaces	مساحات العمل
+	Zoom In	تكبير
+	Zoom Out	تصغير
+	Zoom to Sequence	ملاءمة التسلسل
+	Home	البداية
+	Import	استيراد
+	Full screen	ملء الشاشة
+	Volume	مستوى الصوت
+	Search	بحث
+	Quick Export	تصدير سريع
+	Cancel	إلغاء
+	OK	موافق
+	Audio Gain	كسب الصوت
+	Standard	قياسي
+	Adaptive	تكيّفي
+	Mono	أحادي
+	Stereo	ستيريو
+	Close Panel	إغلاق اللوحة
+	Restore Workspace	استعادة مساحة العمل
+	Delete	حذف
+	Untitled Workspace	مساحة عمل بلا عنوان
+	New Workspace	مساحة عمل جديدة
+	Edit Workspaces	تعديل مساحات العمل
+	Reset	إعادة تعيين
+	Audio	الصوت
+	Don't Save	عدم الحفظ
+	Color	التلوين
+	Apply	تطبيق
+	New Bin	سلة جديدة
+	Unlink	إلغاء الربط
+	Clip	مقطع
+	General	عام
+	Graphics	الرسومات
+	Labels	التسميات
+	Media Cache	ذاكرة الوسائط المؤقتة
+	Memory	الذاكرة
+	Playback	التشغيل
+	Plugins	الإضافات
+	Settings	الإعدادات
+	Export…	تصدير…
+	Hand Tool	أداة اليد
+	Pen Tool	أداة القلم
+	Rate Stretch Tool	أداة تمديد السرعة
+	Ripple Edit Tool	أداة التحرير مع الإزاحة
+	Rolling Edit Tool	أداة التحرير المتدحرج
+	Selection Tool	أداة التحديد
+	Slide Tool	أداة الإزاحة
+	Slip Tool	أداة الانزلاق
+	Zoom Tool	أداة التكبير
+	Interface Language	لغة الواجهة
+	System Language	لغة النظام
+	Dock Panel	تثبيت اللوحة
+	Undock Panel	إلغاء تثبيت اللوحة

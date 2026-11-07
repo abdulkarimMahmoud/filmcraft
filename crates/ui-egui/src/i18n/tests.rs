@@ -20,6 +20,7 @@ fn catalog_text(l: Language) -> Option<&'static str> {
         Language::Pl => Some(include_str!("pl.tsv")),
         Language::Sv => Some(include_str!("sv.tsv")),
         Language::Tr => Some(include_str!("tr.tsv")),
+        Language::Ar => Some(include_str!("ar.tsv")),
     }
 }
 
@@ -54,7 +55,7 @@ fn unknown_strings_pass_through_and_languages_round_trip() {
     }
     assert_eq!(Language::En.tr("File"), "File");
     assert_eq!(Language::parse("xx"), None);
-    for code in ["de-DE", "fr-FR", "id-ID", "it-IT", "cs-CZ", "sv-SE"] {
+    for code in ["de-DE", "fr-FR", "id-ID", "it-IT", "cs-CZ", "sv-SE", "ar-SA"] {
         assert_eq!(Language::parse(code), None, "the preference stores the bare code");
     }
     // language names are always shown in their own language
@@ -73,6 +74,7 @@ fn unknown_strings_pass_through_and_languages_round_trip() {
         (Language::Pl, "Polski"),
         (Language::Sv, "Svenska"),
         (Language::Tr, "Türkçe"),
+        (Language::Ar, "العربية"),
     ] {
         assert_eq!(l.name(), name);
     }
@@ -531,6 +533,10 @@ fn language_commands_switch_and_persist_without_a_document() {
     ] {
         switch_and_check(&mut app, &ctx, name, lang, code, own, earlier);
     }
+    // Arabic needs an Arabic face (see `arabic_needs_an_installed_font`); skip that step without one
+    if crate::i18n::arabic_font_available() {
+        switch_and_check(&mut app, &ctx, "arabic", Language::Ar, "ar", "العربية", Some(("app.language.turkish", "Türkçe")));
+    }
     switch(&mut app, &ctx, "app.language.english");
     assert_eq!(app.ui.language, Language::En);
     set_current(Language::En);
@@ -602,6 +608,9 @@ fn system_language_picks_italian_korean_and_the_first_known() {
     }
     for tag in ["tr", "TR", "tr-TR", "tr_TR.UTF-8", "tr_TR"] {
         assert_eq!(l(&[tag]), Language::Tr, "{tag}");
+    }
+    for tag in ["ar", "AR", "ar-SA", "ar-EG", "ar_EG.UTF-8", "ar_SA.UTF-8@arabic"] {
+        assert_eq!(l(&[tag]), Language::Ar, "{tag}");
     }
     for none in [&["ita"][..], &["i"], &["-it"]] {
         assert_eq!(l(none), Language::En, "{none:?}");
@@ -785,6 +794,36 @@ fn japanese_needs_an_installed_font() {
             }
         }
     });
+}
+
+/// Arabic switches and shows its letters when an Arabic face (craft-fonts or an installed one) is
+/// there, and is refused with the interface left as it was without one.
+#[test]
+fn arabic_needs_an_installed_font() {
+    let mut app = crate::FilmcraftApp::new(filmcraft_engine::Session::default());
+    let ctx = egui::Context::default();
+    crate::theme::install(&ctx, &crate::theme::Tokens::for_kind(crate::theme::ThemeKind::default()));
+    let r = crate::menus::invoke(&mut app, &ctx, "app.language.arabic", serde_json::json!({}));
+    if !crate::i18n::arabic_font_available() {
+        assert!(r.is_err(), "{r:?}");
+        assert_eq!(app.ui.language, Language::En);
+        return;
+    }
+    assert!(r.is_ok(), "{r:?}");
+    assert_eq!(app.ui.language, Language::Ar);
+    assert_ui_persists(&app, Language::Ar, "ar");
+    let mut output = ctx.run_ui(egui::RawInput::default(), |_| {});
+    output.textures_delta.clear();
+    ctx.fonts_mut(|fonts| {
+        let sample = "ابتثجحخدذرزسشصضطظعغفقكلمنهوي";
+        for family in [egui::FontFamily::Proportional, egui::FontFamily::Monospace] {
+            let font = egui::FontId::new(13.0, family);
+            for ch in sample.chars() {
+                assert!(fonts.has_glyph(&font, ch), "missing {ch} in {font:?}");
+            }
+        }
+    });
+    set_current(Language::En);
 }
 
 /// Edit ▸ Language and Settings ▸ Interface Language list the same languages in the same order.

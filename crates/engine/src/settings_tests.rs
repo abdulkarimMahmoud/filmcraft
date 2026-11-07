@@ -75,6 +75,9 @@ fn interface_language_persists_and_rejects_hostile_values() {
     }
     set(&mut s, "general.interfaceLanguage", json!("tr"));
     assert_eq!(Preferences::load(&path).general.interface_language, "tr");
+    // Arabic stores the bare `ar` code too
+    set(&mut s, "general.interfaceLanguage", json!("ar"));
+    assert_eq!(Preferences::load(&path).general.interface_language, "ar");
     // back to following the operating system (#218)
     set(&mut s, "general.interfaceLanguage", json!("system"));
     assert_eq!(Preferences::load(&path).general.interface_language, "system");
