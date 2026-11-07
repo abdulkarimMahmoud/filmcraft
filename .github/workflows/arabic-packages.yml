@@ -1,0 +1,96 @@
+name: Arabic build — installers
+
+# Fork-only: builds distributable packages for the arabic/interface branch and uploads them as
+# workflow artifacts. Not for upstream — the release pipeline in release.yml stays the source of
+# truth for signed, published builds.
+on:
+  workflow_dispatch:
+  # This file lives on ci/packages, never on arabic/interface, so the PR branch stays clean.
+  push:
+    branches: [ci/packages]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: arabic-packages-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  # Same craft-fonts revision as ci.yml and release.yml, so the packages embed the official fonts
+  # (Noto Sans Arabic among them — the Arabic interface needs one).
+  CRAFT_FONTS_REF: b076417b5880bd4154bd22f00695b1d28c6bea83
+
+jobs:
+  windows-msi:
+    name: Windows x64 (MSI + portable zip)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arabic/interface
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: arabic-windows-x64
+      - name: Fetch craft-fonts
+        shell: pwsh
+        run: |
+          git clone --quiet --filter=blob:none https://github.com/storytold/craft-fonts "$env:RUNNER_TEMP\craft-fonts"
+          git -C "$env:RUNNER_TEMP\craft-fonts" checkout --quiet $env:CRAFT_FONTS_REF
+          "CRAFT_FONTS_DIR=$env:RUNNER_TEMP\craft-fonts" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          "CRAFT_FONTS_REQUIRED=1" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+      - name: Install WiX 5
+        run: dotnet tool install --global wix --version 5.0.2
+      - name: Build and package
+        run: pwsh packaging/windows/package.ps1 -Arch x64
+      - uses: actions/upload-artifact@v4
+        with:
+          name: filmcraft-windows-x64
+          path: |
+            dist/release/*.msi
+            dist/release/*-portable.zip
+          if-no-files-found: error
+          retention-days: 14
+
+  linux-packages:
+    name: Linux x86_64 (deb, rpm, tar.gz, AppImage)
+    # 22.04 keeps the glibc floor at 2.35 so the packages run on 22.04 and newer.
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arabic/interface
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          shared-key: arabic-linux-x86_64
+      - name: System dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            pkg-config libxkbcommon-dev libwayland-dev libx11-dev libxcb1-dev libxcursor-dev \
+            libxrandr-dev libxi-dev libfontconfig1-dev libfreetype-dev libasound2-dev libgl1-mesa-dev \
+            desktop-file-utils appstream zsync
+      - name: Fetch craft-fonts
+        run: |
+          git clone --quiet --filter=blob:none https://github.com/storytold/craft-fonts "$RUNNER_TEMP/craft-fonts"
+          git -C "$RUNNER_TEMP/craft-fonts" checkout --quiet "$CRAFT_FONTS_REF"
+          echo "CRAFT_FONTS_DIR=$RUNNER_TEMP/craft-fonts" >> "$GITHUB_ENV"
+          echo "CRAFT_FONTS_REQUIRED=1" >> "$GITHUB_ENV"
+      - name: nfpm
+        run: |
+          curl -sSL -o /tmp/nfpm.tgz https://github.com/goreleaser/nfpm/releases/download/v2.43.0/nfpm_2.43.0_Linux_x86_64.tar.gz
+          tar -C /tmp -xzf /tmp/nfpm.tgz nfpm
+          sudo install -m755 /tmp/nfpm /usr/local/bin/nfpm
+      - name: Build and package
+        run: packaging/linux/package.sh --formats "deb rpm tar appimage"
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: filmcraft-linux-x86_64
+          path: dist/release/*
+          if-no-files-found: error
+          retention-days: 14
