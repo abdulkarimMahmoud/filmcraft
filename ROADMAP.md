@@ -82,7 +82,7 @@ Premiere ships 10 interface languages. Measured from our catalogs (3,593 strings
 | Simplified Chinese | partial (whole interface; engine errors English) | 99.6% |
 | Spanish | partial (whole interface) | 99.9% |
 | Hindi | none (no Devanagari shaping in the interface) | 0% |
-| Arabic | none (no RTL interface) | 0% |
+| Arabic | partial (right-to-left interface; native review welcome) | 100% |
 | French | partial (whole interface; native review welcome) | ~100% |
 | Portuguese (Brazil) | partial (whole interface; native review welcome) | ~100% |
 | Indonesian | partial (whole interface; native review welcome) | ~100% |

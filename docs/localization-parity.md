@@ -1,6 +1,6 @@
 # Localization parity
 
-> **Last reviewed:** 2026-10-10 · **Last updated:** 2026-11-07 · **Change:** minor (Arabic is a registered interface language with a pilot catalog; the interface's bidi pass and the missing RTL mirroring are described accurately) · **Target:** Adobe Premiere Pro 2026 (26.5.2)
+> **Last reviewed:** 2026-10-10 · **Last updated:** 2026-11-07 · **Change:** minor (Arabic's catalog now covers every interface string, and the interface mirrors right to left in Arabic; the bidi pass, the mirroring and the layouts that still need a hand-written flip are described accurately) · **Target:** Adobe Premiere Pro 2026 (26.5.2)
 
 Per-language status of FilmCraft's interface. Premiere 26.5.2 ships 10 interface languages (the
 installed bundle's `.lproj` folders): German, English, Spanish, French, Italian, Japanese, Korean,
@@ -29,17 +29,23 @@ Traditional locales. Ukrainian uses the bundled Cyrillic interface fonts. Vertic
 is supported. The interface (egui 0.37 fork) shapes each font run with harfrust, lays every label
 out through its UAX #9 bidi pass, and has Arabic and Hebrew fallback fonts
 (`crates/ui-egui/src/rtl.rs`); captions (timeline blocks, the Text panel list when not being
-edited) are laid out in reading order too. The interface is not mirrored right to left yet: the
-fork's `Style::right_to_left` (which mirrors menus, scroll bars, headers, combo boxes, checkboxes,
-popups and resize grips) is not switched on by the app, so an Arabic interface keeps its
-left-to-right panel order with right-to-left text. The title engine (`crates/text`, harfrust +
-bidi) lays out right to left, but Arabic titles are reported broken (#395).
+edited) are laid out in reading order too. In Arabic (and a future Hebrew) the interface also
+mirrors: `Language::is_rtl` marks the direction, `theme::apply_visuals` sets the fork's
+`Style::right_to_left` (menus, scroll bars, headers, combo boxes, checkboxes, popups, resize
+grips) and `apply_prefs` re-applies it after `Context::set_language`. Rows this crate lays out by
+hand go through `direction::row` / `direction::from_end` instead of `Layout::left_to_right` /
+`right_to_left`, so panels, dialogs and the timeline follow the language. Sheets that paint at
+absolute coordinates (the timeline's ruler and track lanes, the monitor overlays) mirror through
+those row layouts only; a screenshot pass in Arabic is still the way to find the leftovers. The
+title engine (`crates/text`, harfrust + bidi) lays out right to left, but Arabic titles are
+reported broken (#395).
 
 ## Status
 
-Measured 2026-10-19 by counting entries in each catalog. The denominator is the union of all
-catalogs' sources (**3,593 strings**); strings not yet wrapped in `tl!` and engine messages are
-not in it, so real coverage is somewhat lower than shown. Estimates calibrated from #449 (Japanese,
+Measured 2026-10-19 by counting entries in each catalog, except Arabic (2026-11-07). The
+denominator is the union of all catalogs' sources (**3,740 strings**, 24 of which only the Arabic
+catalog carries); strings not yet wrapped in `tl!` and engine messages are not in it, so real
+coverage is somewhat lower than shown. Estimates calibrated from #449 (Japanese,
 whole interface, one PR) at ~4–8 h per language for the catalog plus tests.
 
 | Language | Code | UI strings | Dialogs / tooltips / help | Script support | Native review | Status | To `full` |
@@ -48,7 +54,7 @@ whole interface, one PR) at ~4–8 h per language for the catalog plus tests.
 | Simplified Chinese | zh-cn | 3,485 (99.6%) | dialogs, Settings, effects, shortcuts, status; engine errors English | CJK font fallback; system IME via winit | not recorded | partial | 6–10 h + review |
 | Spanish | es | 3,592 (the reference catalog) | as above | Latin | not recorded | partial | 4–8 h + review |
 | Hindi | hi | 0 (0%) | — | **no Devanagari shaping in the interface** | — | none | 30–50 h (shaping in UI + catalog + fonts) |
-| Arabic | ar | pilot (160: core menus, panels, workspaces, settings, dialogs) | — | labels shape and read right to left (egui fork bidi); layout not mirrored (`Style::right_to_left` off); Arabic faces from craft-fonts or the system, switching refused without one; titles broken (#395) | not recorded; welcome | pilot | catalog + native review |
+| Arabic | ar | 3,740 (100%: every string, plus 24 sources the other catalogs lack) | dialogs, Settings, effects, shortcuts, status; engine errors English | labels shape and read right to left (egui fork bidi) and the interface mirrors (`Style::right_to_left` plus `direction::row`/`from_end`); Arabic faces from craft-fonts or the system, switching refused without one; titles broken (#395) | not recorded; welcome | partial | native review |
 | French | fr | 3,526 (same entries as Spanish, plus the macOS Settings item) | as Spanish | Latin (bundled fonts) | not recorded; welcome | partial (#498) | review |
 | Portuguese (Brazil) | pt-br | 3,541 (same entries as Spanish, plus the macOS Settings item) | as Spanish | Latin (bundled fonts) | not recorded; welcome | partial (#859) | review |
 | Indonesian | id | 3,541 (same entries as Spanish, plus the macOS Settings item) | as Spanish | Latin (bundled fonts); System Language also maps the legacy `in` code | not recorded; welcome | partial (#867) | review |
@@ -74,14 +80,13 @@ printed by `cargo xtask ci`) lists each language's missing strings.
 Premiere also ships Italian, which we cover like Spanish, and Russian, which now covers the whole
 interface (native review welcome).
 
-**Localization dimension:** 9 of the 12 key languages near-complete (English, Spanish, Japanese,
-Simplified Chinese, French, Portuguese (Brazil), Indonesian, Korean, German), 1 pilot (Arabic: the
-core menus, panels and settings; labels read right to left through the egui fork's bidi pass, the
-layout is not mirrored yet), 2 none (Hindi, Vietnamese); against Premiere's 10 languages we cover 10
-at catalog level, Russian pending native review. **~37%, 150–230 h** for the twelve key languages to
-`full` plus Russian review, of which the Arabic catalog's remaining strings and the RTL layout
-(`Style::right_to_left` plus the hand-written layouts it flips) are the largest parts. Every
-language needs native-speaker review (human).
+**Localization dimension:** 10 of the 12 key languages near-complete (English, Spanish, Japanese,
+Simplified Chinese, French, Portuguese (Brazil), Indonesian, Korean, German, Arabic — the last with
+every string and a mirrored right-to-left layout, awaiting native review), 2 none (Hindi,
+Vietnamese); against Premiere's 10 languages we cover 10 at catalog level, Arabic and Russian
+pending native review. **~33%, 130–210 h** for the twelve key languages to `full` plus the Arabic
+and Russian reviews, of which Hindi's Devanagari shaping in the interface is the largest part.
+Every language needs native-speaker review (human).
 
 ## Czech catalog quality
 
@@ -106,7 +111,8 @@ creative effect names, and the shared `Subtitle` key (caption format and graphic
 
 | Date | Change | Summary |
 |---|---|---|
-| 2026-11-07 | minor | Arabic (ar) is an interface language: registered in Edit ▸ Language, Settings and the macOS menu, with a pilot catalog of the core menus, panels, workspaces, settings and dialogs; labels read right to left through the egui fork's bidi pass, the layout is not mirrored yet |
+| 2026-11-07 | minor | Arabic's catalog covers the whole interface (3,740 entries: every source in the other catalogs plus 24 of its own) and the interface mirrors right to left: `Style::right_to_left` for egui's widgets, `direction::row`/`from_end` for the 44 hand-written layouts; native review welcome |
+| 2026-11-07 | minor | Arabic (ar) is an interface language: registered in Edit ▸ Language, Settings and the macOS menu, with a pilot catalog of the core menus, panels, workspaces, settings and dialogs; labels read right to left through the egui fork's bidi pass, the layout was not mirrored yet |
 | 2026-10-30 | minor | Bosnian (bs, Latin, Ijekavian) covers the whole interface: 3,610 entries, Edit ▸ Language ▸ Bosanski, every `bs-*` locale; AI-assisted, not native-reviewed |
 | 2026-10-26 | minor | Swedish (sv) covers the whole interface (all 3,581 strings); System Language picks it for `sv-*` locales |
 | 2026-10-23 | minor | Missing translations never fail a test or build (they show in English); `cargo xtask i18n-report`, also run by `cargo xtask ci`, lists them per language |
