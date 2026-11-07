@@ -66,7 +66,7 @@
 	Bottom	أسفل
 	Breakout to Mono	تفكيك إلى أحادي
 	Bring Forward	تقديم للأمام
-	Bring to Front	إحضار إلى المقدمة
+	Bring to Front	تقديم إلى المقدمة
 	Brown	بنّي
 	Captions	الترجمات النصية
 	Captions and Graphics	الترجمات النصية والرسومات
@@ -247,7 +247,7 @@
 	Overwrite	كتابة فوق
 	Paste	لصق
 	Paste Attributes…	لصق الخصائص…
-	Paste Insert	لصق وإدراج
+	Paste Insert	لصق إدراج
 	Paused Resolution	دقة الإيقاف المؤقت
 	Playback Resolution	دقة التشغيل
 	Playback…	التشغيل…
@@ -289,9 +289,9 @@
 	Reset to Saved Layout	إعادة التعيين إلى التخطيط المحفوظ
 	Restore Captions from Source Clip	استعادة الترجمات النصية من المقطع المصدر
 	Reveal Log Files…	إظهار ملفات السجل…
-	Reverse Match Frame	مطابقة الإطار العكسي
+	Reverse Match Frame	المطابقة العكسية للإطار
 	Revert	استرجاع
-	Revert Remix	التراجع عن إعادة المزج
+	Revert Remix	استرجاع إعادة المزج
 	Review	مراجعة
 	Right	يمين
 	Ripple Delete	حذف مع الإزاحة
@@ -311,7 +311,7 @@
 	Search Bin	البحث في السلة
 	Select	تحديد
 	Select All	تحديد الكل
-	Select All Matching	تحديد كل المطابق
+	Select All Matching	تحديد كل المطابقات
 	Select Label Group	تحديد مجموعة التسمية
 	Select Next Graphic	تحديد الرسم التالي
 	Select Next Layer	تحديد الطبقة التالية
@@ -321,7 +321,7 @@
 	Selection as FilmCraft Project…	التحديد كمشروع FilmCraft…
 	Selection…	التحديد…
 	Send Backward	إرسال للخلف
-	Send to Back	إرسال إلى الخلفية
+	Send to Back	إرسال إلى الخلف
 	Sequence	تسلسل
 	Sequence From Clip	تسلسل من مقطع
 	Sequence Settings…	إعدادات التسلسل…
@@ -332,7 +332,7 @@
 	Show Duplicate Frame Markers	إظهار علامات الإطارات المكرّرة
 	Show Guides	إظهار الأدلة
 	Show Rulers	إظهار المساطر
-	Show Through Edits	إظهار القطع المتلاصقة
+	Show Through Edits	إظهار القطع المتصلة
 	Simplify Sequence…	تبسيط التسلسل…
 	Snap in Program Monitor	الالتصاق في شاشة البرنامج
 	Snap in Timeline	الالتصاق في المخطط الزمني
@@ -357,7 +357,7 @@
 	Transcript	النص المكتوب
 	Transparency Grid	شبكة الشفافية
 	Transparent Video…	فيديو شفاف…
-	Trim Edit	تحرير الاقتصاص
+	Trim Edit	اقتصاص القطع
 	Trim…	اقتصاص…
 	Undo	تراجع
 	Ungroup	إلغاء التجميع
@@ -607,7 +607,7 @@
 	Remove filler words	إزالة كلمات الحشو
 	Create captions	إنشاء ترجمات نصية
 	Speaker	المتحدث
-	Box	إطار
+	Box	مربّع
 	Align	محاذاة
 	Align left	محاذاة إلى اليسار
 	Align center	توسيط
@@ -661,7 +661,7 @@
 	Limiter	المحدّد
 	Link Channels	ربط القنوات
 	Limiter Threshold	عتبة المحدّد
-	Limiter Release	تحرير المحدّد
+	Limiter Release	تحرر المحدّد
 	Auto Gate	بوّابة تلقائية
 	Threshold	العتبة
 	Attack	الهجوم
@@ -1013,8 +1013,8 @@
 	Bezier	بيزييه
 	Auto Bezier	بيزييه تلقائي
 	Continuous Bezier	بيزييه متصل
-	Ease In	تدرّج الدخول
-	Ease Out	تدرّج الخروج
+	Ease In	تلطيف الدخول
+	Ease Out	تلطيف الخروج
 	Select a clip to grade	حدّد مقطعًا لتدريجه
 	Select a clip to see its properties	حدّد مقطعًا لعرض خصائصه
 	Anchor point	نقطة الارتكاز
@@ -1055,7 +1055,7 @@
 	Faux Bold	عريض زائف
 	Faux Italic	مائل زائف
 	All Caps	أحرف كبيرة
-	Small Caps	أحرف صغيرة كبيرة
+	Small Caps	أحرف كبيرة مصغّرة
 	Underline	تسطير
 	Strikethrough	شطب
 	OpenType	OpenType
@@ -1094,7 +1094,7 @@
 	Preroll	ما قبل التشغيل
 	Postroll	ما بعد التشغيل
 	Video Frame	إطار الفيديو
-	Pin To	التثبيت إلى
+	Pin To	التثبيت على
 	Pinned Edges	الحواف المثبَّتة
 	FilmCraft Graphics Template	قالب رسومات FilmCraft
 	{n} Font	خط {n}
@@ -1286,7 +1286,7 @@
 	ASC CDL	ASC CDL
 	Accessible color contrast	تباين ألوان ميسّر
 	Animate zoom, scrolling and menus	تحريك التكبير والتمرير والقوائم
-	Action-Safe Margin	هامش المنطقة الآمنة للحركة
+	Action-Safe Margin	هامش الأمان للحركة
 	Active Monitor	الشاشة النشطة
 	Add	إضافة
 	Add tracks automatically when editing source clips onto the Timeline	إضافة مسارات تلقائيًا عند تحرير مقاطع المصدر على المخطط الزمني
@@ -1380,9 +1380,9 @@
 	Band 5	النطاق 5
 	Band Pass	تمرير النطاق
 	Band Slide	انزلاق شريطي
-	Band Stop	إيقاف النطاق
+	Band Stop	قطع النطاق
 	Bandpass	تمرير النطاق
-	Barn Doors	أبواب الحظيرة
+	Barn Doors	أبواب مزدوجة
 	Basic	أساسي
 	Basic 3D	ثلاثي الأبعاد أساسي
 	Basic Correction	تصحيح أساسي
@@ -1455,7 +1455,7 @@
 	Bump Height	ارتفاع النتوء
 	Burn Alpha	حرق ألفا
 	Burn Chroma	حرق الكروما
-	Burn Color	حرق اللون
+	Burn Color	لون الحرق
 	Butt cap	طرف مسطّح
 	Butterworth	بتروورث
 	CEA-608	CEA-608
@@ -1476,7 +1476,7 @@
 	Center Split	انقسام مركزي
 	Center of Sphere	مركز الكرة
 	Cents	سنتات
-	Change to Color	التغيير إلى لون
+	Change to Color	التغيير إلى اللون
 	Changes are copied in the background a moment after each edit. If FilmCraft quits unexpectedly, they are offered the next time it starts.	تُنسخ التغييرات في الخلفية بعد لحظة من كل تحرير. وإذا أُنهي FilmCraft بشكل غير متوقع، تُعرض في التشغيل التالي.
 	Channel	القناة
 	Channel Blur	تمويه القناة
@@ -1626,7 +1626,7 @@
 	Dimmed	باهت
 	Dip to Black	انتقال إلى الأسود
 	Dip to Black (Legacy)	انتقال إلى الأسود (قديم)
-	Dip to Color	انتقال إلى لون
+	Dip to Color	انتقال إلى اللون
 	Dip to White	انتقال إلى الأبيض
 	Dip to White (Legacy)	انتقال إلى الأبيض (قديم)
 	Direction	الاتجاه
@@ -1667,15 +1667,15 @@
 	Dynamics Processing	معالجة الديناميكيات
 	Early Reflections	الانعكاسات المبكرة
 	Earthquake	زلزال
-	Ease In and Out	تدرّج الدخول والخروج
-	Easing	التدرّج
+	Ease In and Out	تلطيف الدخول والخروج
+	Easing	التلطيف
 	Echo	الصدى المتكرر
 	Echo Glow	توهّج صدى
 	Echo Operator	مؤثر الصدى
 	Echo Time (seconds)	زمن الصدى (ثانية)
 	Echoes	أصداء
 	Edge Color	لون الحافة
-	Edge Feather	تنعيم الحافة
+	Edge Feather	تلطيف الحافة
 	Edge Glow	توهّج الحافة
 	Edge Sharpness	حدّة الحافة
 	Edge Softness	نعومة الحافة
@@ -1788,7 +1788,7 @@
 	Gamma	جاما
 	Gamma Correction	تصحيح جاما
 	Gamut Warning	تحذير النطاق اللوني
-	Gamut Warning Color	لون تحذير النطاق
+	Gamut Warning Color	لون تحذير النطاق اللوني
 	Gap	فجوة
 	Gap Color	لون الفجوة
 	Gaussian Blur	تمويه غاوسي
@@ -1859,7 +1859,7 @@
 	Hide FilmCraft	إخفاء FilmCraft
 	Hide Others	إخفاء الآخرين
 	High	مرتفع
-	High Cutoff	قطع مرتفع
+	High Cutoff	تردد القطع العالي
 	High Frequency Cut	قطع الترددات العالية
 	High Frequency Damping	تخميد الترددات العالية
 	High Pass	تمرير عالٍ
@@ -1915,7 +1915,7 @@
 	Internal White Point	نقطة الأبيض الداخلية
 	Interpolation	الاستيفاء
 	Intersect	تقاطع
-	Inverse Falloff	تدرّج معاكس
+	Inverse Falloff	انحدار معاكس
 	Invert	عكس
 	Invert Alpha	عكس ألفا
 	Invert Blur	عكس التمويه
@@ -1934,7 +1934,7 @@
 	Italian	الإيطالية
 	Japanese	اليابانية
 	JetBrains Mono	JetBrains Mono
-	Join Through Edits	وصل القطع المتلاصقة
+	Join Through Edits	وصل القطع المتصلة
 	Ripple Trim In	اقتصاص الدخول مع الإزاحة
 	Ripple Trim Out	اقتصاص الخروج مع الإزاحة
 	Roll Edit	تحرير متدحرج
@@ -1945,7 +1945,7 @@
 	Key Color	لون المفتاح
 	Keying	المفتحة
 	Korean	الكورية
-	Label Defaults	افتراضيات التسميات
+	Label Defaults	التسميات الافتراضية
 	Label speakers	وسم المتحدثين
 	Labels	التسميات
 	Large Hall	قاعة كبيرة
@@ -1982,7 +1982,7 @@
 	Light Intensity	شدة الضوء
 	Light Leak	تسرّب ضوئي
 	Light Leaks	تسرّبات ضوئية
-	Light Sweep	مسح ضوئي
+	Light Sweep	كسح ضوئي
 	Light Type	نوع الضوء
 	Lighten	تفتيح
 	Lighter Color	اللون الأفتح
@@ -2213,8 +2213,8 @@
 	Pin Horizontal	تثبيت أفقي
 	Pin Light	ضوء التثبيت
 	Pin Vertical	تثبيت عمودي
-	Pinning	التثبيت
-	Pitch Shifter	مغيّر الطبقة الصوتية
+	Pinning	تثبيت الحواف
+	Pitch Shifter	مغيّر حدة الصوت
 	Plate	لوح
 	Plateau Wipe	مسح بالهضاب
 	Plateaus	الهضاب
@@ -2251,7 +2251,7 @@
 	Position, Scale & Rotation	الموضع والقياس والدوران
 	Position, Scale, Rotation	الموضع والقياس والدوران
 	Posterize	تبسيط الدرجات
-	Posterize Time	تبسيط درجات الزمن
+	Posterize Time	تبسيط الزمن
 	Pre-Delay	التأخير المسبق
 	Prefix	البادئة
 	Presence Lift	رفع الحضور
@@ -2492,9 +2492,9 @@
 	Step forward/back many	تقدّم/رجوع عدة خطوات
 	Stereo Expand	توسيع الستيريو
 	Stereo Expander	موسّع الستيريو
-	Stereo Imagery	صورة ستيريو
+	Stereo Imagery	الصورة الستيريو
 	Stereo Media	وسائط ستيريو
-	Stereo Phasing	تطور طوري ستيريو
+	Stereo Phasing	إزاحة طورية ستيريو
 	Stereoscopic - Over/Under	مجسّم - فوق/تحت
 	Stereoscopic - Side by Side	مجسّم - جنبًا إلى جنب
 	Still	صورة ثابتة
@@ -2565,7 +2565,7 @@
 	Tilt	إمالة
 	Tilt (X Axis)	إمالة (المحور X)
 	Time	الزمن
-	Time and Pitch	الزمن والطبقة الصوتية
+	Time and Pitch	الزمن وحدّة الصوت
 	Timecode Conversion	تحويل الترميز الزمني
 	Timeline Mouse Scrolling	تمرير المخطط الزمني بالفأرة
 	Timeline Playback Auto-Scrolling	التمرير التلقائي لتشغيل المخطط الزمني
@@ -2628,7 +2628,7 @@
 	VR Chroma Leaks	تسرّبات كروما VR
 	VR Chromatic Aberrations	زيغ لوني VR
 	VR Color Gradients	تدرّجات ألوان VR
-	VR De-Noise	إزالة ضجيج VR
+	VR De-Noise	مزيل ضجيج VR
 	VR Digital Glitch	خلل رقمي VR
 	VR Fractal Noise	ضجيج كسوري VR
 	VR Glow	توهّج VR
@@ -2703,7 +2703,7 @@
 	Wet Out	خرج مبلّل
 	When Opening a Project	عند فتح مشروع
 	Whip	مسح خاطف
-	Whip (Legacy)	خفقة (قديم)
+	Whip (Legacy)	مسح خاطف (قديم)
 	Whisper base (balanced)	Whisper base (متوازن)
 	Whisper small (most accurate)	Whisper small (الأدق)
 	Whisper tiny (fastest)	Whisper tiny (الأسرع)
@@ -2742,7 +2742,7 @@
 	seconds	ثوانٍ
 	AAF…	AAF…
 	Audio…	الصوت…
-	Avid Log Exchange…	تبادل سجلات Avid…
+	Avid Log Exchange…	Avid Log Exchange…
 	Color…	اللون…
 	EDL…	EDL…
 	Edit Workspaces…	تعديل مساحات العمل…
@@ -2768,7 +2768,7 @@
 	Flash Cue Marker	علامة إشارة Flash
 	System Compatibility Report	تقرير توافق النظام
 	no GPU adapter: the CPU compositor is used	لا محوّل GPU: يُستخدم مُركِّب المعالج
-	Avid Log Exchange	تبادل سجلات Avid
+	Avid Log Exchange	Avid Log Exchange
 	FilmCraft Project	مشروع FilmCraft
 	{name} Selection.fcproj	{name} Selection.fcproj
 	{name} (Simplified)	{name} (مبسّط)
@@ -2930,7 +2930,7 @@
 	Match Source	مطابقة المصدر
 	Field Order	ترتيب الحقول
 	Aspect	نسبة العرض
-	Profile	الملف
+	Profile	الملف التعريفي
 	Bitrate Encoding	ترميز معدل البِتّات
 	Target Bitrate	معدل البِتّات المستهدف
 	Adaptive ({bpp} bits per pixel)	تكيّفي ({bpp} بِتّ لكل بكسل)
@@ -3044,7 +3044,7 @@
 	Avid-style OP-Atom: DNxHR HQ picture file plus one 24-bit 48 kHz PCM file per channel (_A1, _A2…)	بنمط Avid ‏OP-Atom: ملف صورة DNxHR HQ مع ملف PCM ‏24 بِتّة 48 kHz لكل قناة (_A1، _A2…)
 	BMP	BMP
 	BMP Sequence	تسلسل BMP
-	Baseline	الأساس
+	Baseline	خط الأساس
 	Begin Text Editing for a Graphic Layer	بدء تحرير النص لطبقة رسم
 	Begins With	يبدأ بـ
 	Blur In	تمويه الدخول
@@ -3202,7 +3202,7 @@
 	Nudge Clip Selection Right Five Frames	إزاحة دقيقة لتحديد المقاطع لليمين خمسة إطارات
 	Nudge Clip Selection Right One Frame	إزاحة دقيقة لتحديد المقاطع لليمين إطارًا واحدًا
 	Nudge Clip Selection Up	إزاحة دقيقة لتحديد المقاطع للأعلى
-	Nudge Selected Object down by five	إزاحة العنصر المحدد للأسفل بخمس درجات
+	Nudge Selected Object down by five	إزاحة دقيقة للعنصر المحدد للأسفل بخمس وحدات
 	Nudge Selected Object down by one	إزاحة دقيقة للعنصر المحدد للأسفل بوحدة واحدة
 	Nudge Selected Object to left by five	إزاحة دقيقة للعنصر المحدد لليسار بخمس وحدات
 	Nudge Selected Object to left by one	إزاحة دقيقة للعنصر المحدد لليسار بوحدة واحدة
@@ -3210,10 +3210,10 @@
 	Nudge Selected Object to right by one	إزاحة دقيقة للعنصر المحدد لليمين بوحدة واحدة
 	Nudge Selected Object up by five	إزاحة دقيقة للعنصر المحدد للأعلى بخمس وحدات
 	Nudge Selected Object up by one	إزاحة دقيقة للعنصر المحدد للأعلى بوحدة واحدة
-	Nudge Volume +1dB	إزاحة مستوى الصوت +1dB
-	Nudge Volume +3dB	إزاحة مستوى الصوت +3dB
-	Nudge Volume -1dB	إزاحة مستوى الصوت -1dB
-	Nudge Volume -3dB	إزاحة مستوى الصوت -3dB
+	Nudge Volume +1dB	إزاحة دقيقة لمستوى الصوت +1dB
+	Nudge Volume +3dB	إزاحة دقيقة لمستوى الصوت +3dB
+	Nudge Volume -1dB	إزاحة دقيقة لمستوى الصوت -1dB
+	Nudge Volume -3dB	إزاحة دقيقة لمستوى الصوت -3dB
 	Numbered BMP stills (24-bit)	صور BMP مرقّمة ثابتة (24 بِتّة)
 	JPEG	JPEG
 	Targa	Targa
@@ -3382,7 +3382,7 @@
 	WAV, stereo 48 kHz 24-bit PCM	WAV، ستيريو 48 kHz ‏PCM ‏24 بِتّة
 	Warm Tint	صبغة دافئة
 	Warm highlights, brown shadows	إضاءات دافئة وظلال بنّية
-	Waveform Audio	صوت الشكل الموجي
+	Waveform Audio	Waveform Audio
 	Waveform Audio 48 kHz 16-bit	Waveform Audio ‏48 kHz ‏16 بِتّة
 	Waveform Audio 48 kHz 24-bit	Waveform Audio ‏48 kHz ‏24 بِتّة
 	Web & Social	الويب والتواصل الاجتماعي
@@ -3435,7 +3435,7 @@
 	Large centred title, accent rule and subtitle.	عنوان كبير متمركز وخط تمييز وعنوان فرعي.
 	Lower Third – Rule	الثلث السفلي – خط
 	Lower Third – Slab	الثلث السفلي – لوح
-	Lower Thirds	العناوين السفلية
+	Lower Thirds	عناوين الثلث السفلي
 	Name Color	لون الاسم
 	Name Size	حجم الاسم
 	Name and role on a coloured slab that widens with the name.	الاسم والدور على لوح ملوّن يتّسع مع الاسم.
@@ -3482,7 +3482,7 @@
 	Clip Speed / Duration	سرعة المقطع / المدة
 	Speed:	السرعة:
 	Reverse Speed	عكس السرعة
-	Maintain Audio Pitch	الحفاظ على طبقة الصوت
+	Maintain Audio Pitch	الحفاظ على حدة الصوت
 	Ripple Edit, Shifting Trailing Clips	تحرير مع الإزاحة، وإزاحة المقاطع اللاحقة
 	About	حول
 	Contributors	المساهمون
@@ -3591,9 +3591,9 @@
 	Composite on the GPU when available	التركيب على GPU عند توفّره
 	Text to Speech	تحويل النص إلى كلام
 	Edit Narration	تحرير السرد
-	Dock Panel	تثبيت اللوحة
-	Undock Panel	إلغاء تثبيت اللوحة
-	Docking Action	إجراء التثبيت
+	Dock Panel	إرساء اللوحة
+	Undock Panel	إلغاء إرساء اللوحة
+	Docking Action	إجراء الإرساء
 	Resize floating panel	تغيير حجم اللوحة العائمة
 	Project Notes	ملاحظات المشروع
 	Get Project Notes	جلب ملاحظات المشروع
